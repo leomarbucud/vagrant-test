@@ -1,0 +1,46 @@
+<VirtualHost *:80>
+
+        # Admin email, Server Name (domain name) and any aliases
+        ServerName  dev.thegrid.com
+
+        # Index file and Document Root (where the public files are located)
+        DocumentRoot /var/www/thegrid/public
+
+        # Redirect to https:
+        Redirect permanent / https://dev.thegrid.com
+
+        # Custom log file locations
+        LogLevel warn
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        # Allow overrides in .htaccess file
+        <Directory /var/www/thegrid/public>
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:443>
+        SSLEngine on
+        SSLCertificateFile /vagrant/dev.thegrid.com.pem
+        SSLCertificateKeyFile /vagrant/dev.thegrid.com.pem
+        # Admin email, Server Name (domain name) and any aliases
+        ServerName dev.thegrid.com
+
+        # Index file and Document Root (where the public files are located)
+        DocumentRoot /var/www/thegrid/public
+
+        # Custom log file locations
+        LogLevel warn
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        # Allow overrides in .htaccess file
+        <Directory /var/www/thegrid/public>
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+
+</VirtualHost>
