@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
     mount_options: ["dmode=775,fmode=664"]
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--cpus", "1"]
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50", "--cpus", "2"]
     vb.memory = 1024
   end
 end
