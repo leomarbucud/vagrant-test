@@ -73,24 +73,29 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 
 echo -e "\n----- Provision: Clone Repository...\n"
 cd /var/www
-# rm -rf thegrid
-# git clone https://github.com/leomarbucud/thegrid
+rm -rf thegrid
+git clone https://github.com/leomarbucud/thegrid
 
 echo -e "\n----- Provision: Copy env file...\n"
-# cp /vagrant/vm_provision/.env /var/www/thegrid/.env
+cp /vagrant/vm_provision/.env /var/www/thegrid/.env
 
 # Run Composer
 echo -e "\n----- Provision: Run Composer...\n"
 cd /var/www/thegrid
-# composer install
+composer install
 
 # Run Migration
 echo -e "\n----- Provision: Run Migration...\n"
-# php artisan migrate
+php artisan migrate
 
 # Install Laravel passport
 echo -e "\n----- Provision: Run Migration...\n"
-# php artisan passport:install
+php artisan passport:install
+
+# Install Redux
+echo -e "\n----- Provision: Install Redux...\n"
+cd /var/www/thegrid/public
+npm install --save redux
 
 echo -e "\n----- Provision: Install Vim...\n"
 apt-get -y install vim
